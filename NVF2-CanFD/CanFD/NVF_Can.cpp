@@ -11,12 +11,23 @@
 
 #include "NVF_Can.h"
 
+/**
+ * @brief Construct a new nvf can::nvf can object
+ * 
+ * @param CAN 
+ * @param canId 
+ */
 NVF_Can::NVF_Can(MCP_CAN *CAN, unsigned long canId)
 {
   this->thisCanID = canId;
   this->CAN = CAN;
 }
 
+/**
+ * @brief setup CAN Bus
+ * 
+ * @return true when setup ok
+ */
 bool NVF_Can::setup()
 {
   SPI.begin();
@@ -31,12 +42,25 @@ bool NVF_Can::setup()
   return 1;
 }
 
+/**
+ * @brief 
+ * 
+ * @param frame 
+ * @return true if successful send
+ */
 bool NVF_Can::tx(can_frame *frame)
 {
-  this->CAN->sendMsgBuf(frame->can_id, frame->can_dlc, frame->data);
-  return 1;
+  uint8_t ret = this->CAN->sendMsgBuf(frame->can_id, frame->can_dlc, frame->data);
+  return (ret == CAN_OK);
 }
 
+/**
+ * @brief 
+ * 
+ * @param buf 
+ * @return true when buf populated;
+ * @return false if no message
+ */
 bool NVF_Can::taskLoopRecv(can_frame *buf)
 {
   if (CAN_MSGAVAIL == this->CAN->checkReceive())
