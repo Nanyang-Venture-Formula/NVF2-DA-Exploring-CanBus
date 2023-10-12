@@ -20,8 +20,8 @@ This project is still a WIP.
 
 Apart from bare bones `tx` and `rx` examples for using NVF_CAN wrappers, we also have examples for:
 
-| Example | Status |
-| -- | : -- :|
-| [CAN RX -> LCD](./NVF2-CanFD/examples/main_rx_lcd.cpp) | Not tested |
-| [Counter -> CAN TX](./NVF2-CanFD/examples/main_tx.cpp) | Not tested |
+| Example                                                      |   Status   |
+|--------------------------------------------------------------|:----------:|
+| [CAN RX -> LCD](./NVF2-CanFD/examples/main_rx_lcd.cpp)       | Not tested |
+| [Counter -> CAN TX](./NVF2-CanFD/examples/main_tx.cpp)       | Not tested |
 | [Analog -> CAN TX](./NVF2-CanFD/examples/main_tx_analog.cpp) | Not tested |
