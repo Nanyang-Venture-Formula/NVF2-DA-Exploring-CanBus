@@ -1,14 +1,17 @@
-# NVF2-DA-Exploring-CanBus
+# 1. NVF2-DA-Exploring-CanBus
 
 Some sample testing and debugging codes for CAN Bus Module MCP2515 with the following controllers:
 
-- M5Stack Basic (Black) [ESP32 Based]
-- WeAct Bluepill [STM32F103]
-- WeAct Raspberry Pi Pico
+| Controller                          | Status |
+|-------------------------------------|:------:|
+| Arduino UNO                         |   ✅    |
+| M5Stack Basic (Black) [ESP32 Based] |   ❌    |
+| WeAct Bluepill [STM32F103]          |   ❌    |
+| WeAct Raspberry Pi Pico             |   ❌    |
 
-## Current Status
+## 1.1. Current Status
 
-This project is still a WIP. It does NOT work.
+This project is still a WIP.
 
-- The controllers will print "the message is sent successfully" but there is no other controller on the network that receieves the message. Hence being classified as false positives.
-- The controller (only M5Stack) will print CAN Bus messages even though there is no controller transmitting anything, or as a matter of fact;  there having no other controller on the network.
+- For `Arduino UNO`, code has been tested and is working. 
+- For the `other controllers`, there are multiple SPI interfaces as well as multiple pins muxed into single SPI buses. it is not yet known to us on how we will be able to choose the SPI pins on the other boards.

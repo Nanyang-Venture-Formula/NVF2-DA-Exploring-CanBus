@@ -1,3 +1,12 @@
+/*
+** NANYANG VENTURE FORMULA RACING, 2023
+** NVF2-DA-Exploring-CanBus
+** File description:
+** main_rx
+*/
+
+
+
 #include <Arduino.h>
 
 // #define BOARD_PICO
