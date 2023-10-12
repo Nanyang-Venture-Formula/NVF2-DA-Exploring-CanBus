@@ -35,6 +35,6 @@ void loop()
   tx_buf.data[1] = 0xFF - counter_buf;
 
   tx_buf.can_dlc = 2;
-  NVFCan0.tx(data, tx_buf.can_dlc);
+  NVFCan0.tx(&tx_buf);
   delay(DELAY_MS);   // send data per 100ms
 }
