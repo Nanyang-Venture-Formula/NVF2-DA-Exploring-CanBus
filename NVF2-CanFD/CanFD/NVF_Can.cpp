@@ -1,12 +1,15 @@
-/*
-** NANYANG VENTURE FORMULA RACING, 2023
-** NVF2-DA-Exploring-CanBus
-** File description:
-** NVF_Can
-*/
+/**
+ * @file NVF_Can.cpp
+ * @author Scott CJX (scottcjx.w@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 12-10-2023
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 
 #include "NVF_Can.h"
-
 
 NVF_Can::NVF_Can(MCP_CAN *CAN, unsigned long canId)
 {

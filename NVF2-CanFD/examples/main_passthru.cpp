@@ -1,23 +1,20 @@
-/*
-** NANYANG VENTURE FORMULA RACING, 2023
-** NVF2-DA-Exploring-CanBus
-** File description:
-** main_passthru
-*/
+/**
+ * @file main_passthru.cpp
+ * @author Scott CJX
+ * @brief WIP
+ * @version 0.1
+ * @date 2023-10-12
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 
 #include <Arduino.h>
+#include "CanFD/NVF_Can.h"
 
-#define BOARD_UNO
-
-#ifdef BOARD_UNO
 #define CAN_CSN1             10
 #define CAN_CSN2             9
-#endif
-
 #define DELAY_MS            250
-
-// include Serial Before NVF_Can to override Serial to SerialUSB
-#include "CanFD/NVF_Can.h"
 
 // CAN Network 1
 MCP_CAN NVFCanI0(CAN_CSN1);

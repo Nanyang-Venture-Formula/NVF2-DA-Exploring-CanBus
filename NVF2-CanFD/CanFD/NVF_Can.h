@@ -1,9 +1,13 @@
-/*
-** NANYANG VENTURE FORMULA RACING, 2023
-** Untitled (Workspace)
-** File description:
-** NVF_Can
-*/
+/**
+ * @file NVF_Can.h
+ * @author Scott CJX (scottcjx.w@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 12-10-2023
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 
 #ifndef NVF_CAN_H_
 #define NVF_CAN_H_
@@ -29,7 +33,7 @@ private:
   MCP_CAN *CAN;
 
 public:
-  NVF_Can(MCP_CAN *CAN, unsigned long canId);
+  NVF_Can(MCP_CAN *CAN, ul canId);
   bool setup();
   bool tx(can_frame *);
   bool taskLoopRecv(can_frame *);
