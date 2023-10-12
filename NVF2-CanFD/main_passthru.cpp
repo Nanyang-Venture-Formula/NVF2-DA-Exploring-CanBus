@@ -1,27 +1,11 @@
 #include <Arduino.h>
 
-// #define BOARD_PICO
-// #define BOARD_BLUEPILL
-// #define BOARD_M5STACK
 #define BOARD_UNO
 
+
 #ifdef BOARD_UNO
-#define CAN_CSN             10
-#endif
-#ifdef BOARD_PICO
-#define CAN_CSN             10
-#define CAN_INT             11
-#define Serial              SerialUSB
-#endif
-#ifdef BOARD_BLUEPILL
-#define CAN_CSN             PB0
-#define CAN_INT             PA4
-#define Serial              Serial1
-#endif
-#ifdef BOARD_M5STACK
-#define CAN_CSN             21
-#define CAN_INT             22
-// #define Serial              SerialUSB
+#define CAN_CSN1             10
+#define CAN_CSN2             9
 #endif
 
 #define DELAY_MS            250
@@ -29,8 +13,13 @@
 // include Serial Before NVF_Can to override Serial to SerialUSB
 #include "CanFD/NVF_Can.h"
 
-NVF_Can NVFCan0(CAN_CSN, 0x0F);
-NVF_Can NVFCan1(CAN_CSN+1, 0x0F);
+// CAN Network 1
+MCP_CAN NVFCanI0(CAN_CSN1);
+NVF_Can NVFCan0(&NVFCanI0, 0x01);
+
+// CAN Network 2
+MCP_CAN NVFCanI2(CAN_CSN2);
+NVF_Can NVFCan2(&NVFCanI2, 0x01);
 
 void setup()
 {
