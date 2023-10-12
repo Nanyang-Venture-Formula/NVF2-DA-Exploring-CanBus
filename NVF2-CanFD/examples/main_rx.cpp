@@ -2,7 +2,7 @@
 ** NANYANG VENTURE FORMULA RACING, 2023
 ** NVF2-DA-Exploring-CanBus
 ** File description:
-** main_tx
+** main_rx
 */
 
 
@@ -18,8 +18,8 @@
 #define CAN_CSN             10
 #endif
 #ifdef BOARD_PICO
-#define CAN_CSN             10
-#define CAN_INT             11
+#define CAN_CSN             5
+#define CAN_INT             6
 #define Serial              SerialUSB
 #endif
 #ifdef BOARD_BLUEPILL
@@ -33,13 +33,12 @@
 // #define Serial              SerialUSB
 #endif
 
-#define DELAY_MS            250
-
 // include Serial Before NVF_Can to override Serial to SerialUSB
 #include "CanFD/NVF_Can.h"
 
+// long unsigned int timerH = 10; 
 MCP_CAN NVFCanI0(CAN_CSN);
-NVF_Can NVFCan0(&NVFCanI0, 0x0F);
+NVF_Can NVFCan0(&NVFCanI0, 0x01);
 
 void setup()
 {
@@ -47,14 +46,22 @@ void setup()
   NVFCan0.setup();
 }
 
-uint8_t data[8] = { 0xFF, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xF0, 0xFF};
+can_frame rx_buf;
 
-can_frame tx_buf;
 void loop()
 {
-  memcpy(tx_buf.data, data, 8);
-  tx_buf.can_dlc = 8;
+  if (NVFCan0.taskLoopRecv(&rx_buf))
+  {
+      Serial.print(rx_buf.can_id, HEX);
+      Serial.print(": ");
+      Serial.print(rx_buf.can_dlc);
+      Serial.print("->");
 
-  NVFCan0.tx(&tx_buf);
-  delay(DELAY_MS);   // send data per 100ms
+    for (int i = 0; i < rx_buf.can_dlc; i++)
+    {
+      Serial.print(rx_buf.data[i], HEX);
+      Serial.print(" ");
+    }
+    Serial.println();
+  }
 }

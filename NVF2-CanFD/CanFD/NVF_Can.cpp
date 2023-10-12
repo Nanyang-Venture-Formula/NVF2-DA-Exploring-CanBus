@@ -7,6 +7,7 @@
 
 #include "NVF_Can.h"
 
+
 NVF_Can::NVF_Can(MCP_CAN *CAN, unsigned long canId)
 {
   this->thisCanID = canId;

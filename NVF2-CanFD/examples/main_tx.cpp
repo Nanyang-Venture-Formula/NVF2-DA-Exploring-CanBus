@@ -5,8 +5,6 @@
 ** main_tx
 */
 
-
-
 #include <Arduino.h>
 
 // #define BOARD_PICO
@@ -47,14 +45,17 @@ void setup()
   NVFCan0.setup();
 }
 
-uint8_t data[8] = { 0xFF, 0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xF0, 0xFF};
+uint8_t counter_buf = 0;
 
 can_frame tx_buf;
 void loop()
 {
-  memcpy(tx_buf.data, data, 8);
-  tx_buf.can_dlc = 8;
+  if (counter_buf == -2) counter_buf = 0;
 
-  NVFCan0.tx(&tx_buf);
+  tx_buf.data[0] = 0x00 + counter_buf;
+  tx_buf.data[1] = 0xFF - counter_buf;
+
+  tx_buf.can_dlc = 2;
+  NVFCan0.tx(data, tx_buf.can_dlc);
   delay(DELAY_MS);   // send data per 100ms
 }
