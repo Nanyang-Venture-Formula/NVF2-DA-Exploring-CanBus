@@ -9,88 +9,72 @@
 #define NVF_CAN_H_
 
 #include <Arduino.h>
-#include "mcp_can.h"
+#include <mcp_can.h>
 #include <SPI.h>
-#include "stdint.h"
+#include <stdint.h>
 
-class NVF_Can : MCP_CAN
+#define ul unsigned long
+
+struct can_frame
 {
-public:
-  long unsigned int canId;
-  using MCP_CAN::MCP_CAN;
-
-  void taskSetup(void);
-  // void attachRecvInterrupt(uint8_t);
-  void taskLoopRecv(void);
-  bool taskLoopSend(byte *, uint);
+  unsigned long can_id = 0xFF;
+  uint8_t can_dlc;
+  uint8_t data[8];
 };
 
-// void cb()
-// {
-//   Serial.println("Interrupted --> ");
-// }
-
-// void attachRecvInterrupt(uint8_t intPin)
-// {
-//   attachInterrupt(intPin, cb, PinStatus::FALLING);
-// }
-
-bool NVF_Can::taskLoopSend(byte *data, uint len)
+class NVF_Can
 {
-  byte sndStat = this->sendMsgBuf(this->canId, 0, len, data);
+private:
+  ul thisCanID;
+  MCP_CAN *CAN;
 
-  if (sndStat == CAN_OK)
+public:
+  NVF_Can(MCP_CAN *CAN, unsigned long canId);
+  bool setup();
+  bool tx(can_frame *);
+  //   void taskSetup(void);
+  bool taskLoopRecv(can_frame *);
+  //   bool taskLoopSend(byte *, uint);
+};
+
+NVF_Can::NVF_Can(MCP_CAN *CAN, unsigned long canId)
+{
+  this->thisCanID = canId;
+  this->CAN = CAN;
+}
+
+bool NVF_Can::setup()
+{
+  SPI.begin();
+  while (CAN_OK != this->CAN->begin(MCP_ANY, CAN_500KBPS, MCP_8MHZ))
   {
-    Serial.println("Message Sent Successfully!");
+    Serial.println("CAN BUS initialisation failed");
+    delay(500);
+  }
+
+  this->CAN->setMode(MCP_NORMAL);
+  Serial.println("CAN BUS initialisation successful");
+  return 1;
+}
+
+bool NVF_Can::tx(can_frame *frame)
+{
+  this->CAN->sendMsgBuf(frame->can_id, frame->can_dlc, frame->data);
+  return 1;
+}
+
+bool NVF_Can::taskLoopRecv(can_frame *buf)
+{
+  if (CAN_MSGAVAIL == this->CAN->checkReceive())
+  {
+    this->CAN->readMsgBuf(&buf->can_id, &buf->can_dlc, buf->data);
+
+    Serial.print("ID: 0x");
+    Serial.print(buf->can_id, HEX);
     return 1;
   }
-  else
-  {
-    Serial.println("Error Sending Message...");
-    return 0;
-  }
-}
 
-void NVF_Can::taskLoopRecv(void)
-{
-  unsigned char len = 8;
-  unsigned char buf[8];
-  unsigned long txCanId = 0;
-
-  uint8_t msgStatus = this->checkReceive();
-  if (msgStatus == CAN_MSGAVAIL)
-  {
-    this->readMsgBuf(&txCanId, &len, buf);
-    // txCanId = this->getCanId();
-    Serial.println("-----------------------------");
-    Serial.print("Get data from ID: ");
-    // Serial.println(txCanId, HEX);
-
-    for (int i = 0; i < len; i++) // print the data
-    {
-      Serial.print(buf[i], HEX);
-      Serial.print("\t");
-    }
-    Serial.println();
-  }
-  else if (msgStatus == CAN_NOMSG)
-  {
-    Serial.println("CAN_NOMSG");
-  }
-}
-
-void NVF_Can::taskSetup(void)
-{
-  if (this->begin(MCP_ANY, CAN_500KBPS, MCP_16MHZ) == CAN_OK)
-  {
-    Serial.println("MCP2515 Initialized Successfully!");
-  }
-  else
-  {
-    Serial.println("Error Initializing MCP2515...");
-  }
-
-  this->setMode(MCP_NORMAL); // Change to normal mode to allow messages to be transmitted
+  return 0;
 }
 
 #endif /* !NVF_CAN_H_ */

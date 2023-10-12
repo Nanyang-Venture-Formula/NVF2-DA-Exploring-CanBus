@@ -1,9 +1,13 @@
 #include <Arduino.h>
 
-#define BOARD_PICO
+// #define BOARD_PICO
 // #define BOARD_BLUEPILL
 // #define BOARD_M5STACK
+#define BOARD_UNO
 
+#ifdef BOARD_UNO
+#define CAN_CSN             10
+#endif
 #ifdef BOARD_PICO
 #define CAN_CSN             5
 #define CAN_INT             6
@@ -23,24 +27,32 @@
 // include Serial Before NVF_Can to override Serial to SerialUSB
 #include "CanFD/NVF_Can.h"
 
-long unsigned int timerH = 10; 
-
-NVF_Can NVFCan0(CAN_CSN);
+// long unsigned int timerH = 10; 
+MCP_CAN NVFCanI0(CAN_CSN);
+NVF_Can NVFCan0(&NVFCanI0, 0x01);
 
 void setup()
 {
   Serial.begin(115200);
-  
-  NVFCan0.canId = 0x2345;
-  NVFCan0.taskSetup();
-//   NVFCan0.attachRecvInterrupt(CAN_INT);
+  NVFCan0.setup();
 }
+
+can_frame rx_buf;
 
 void loop()
 {
-  NVFCan0.taskLoopRecv();
-  if (time(0) % 10 == 5)
+  if (NVFCan0.taskLoopRecv(&rx_buf))
   {
-    Serial.println("nth");
+      Serial.print(rx_buf.can_id, HEX);
+      Serial.print(": ");
+      Serial.print(rx_buf.can_dlc);
+      Serial.print("->");
+
+    for (int i = 0; i < rx_buf.can_dlc; i++)
+    {
+      Serial.print(rx_buf.data[i], HEX);
+      Serial.print(" ");
+    }
+    Serial.println();
   }
 }

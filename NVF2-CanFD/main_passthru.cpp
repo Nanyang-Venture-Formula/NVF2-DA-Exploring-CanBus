@@ -29,26 +29,28 @@
 // include Serial Before NVF_Can to override Serial to SerialUSB
 #include "CanFD/NVF_Can.h"
 
-MCP_CAN NVFCanI0(CAN_CSN);
-NVF_Can NVFCan0(&NVFCanI0, 0x0F);
+NVF_Can NVFCan0(CAN_CSN, 0x0F);
+NVF_Can NVFCan1(CAN_CSN+1, 0x0F);
 
 void setup()
 {
   Serial.begin(115200);
   NVFCan0.setup();
+  NVFCan1.setup();
 }
 
-uint8_t counter_buf = 0;
+can_frame rx_buf0;
+can_frame rx_buf1;
 
-can_frame tx_buf;
 void loop()
 {
-  if (counter_buf == -2) counter_buf = 0;
+  if (NVFCan0.taskLoopRecv(&rx_buf0))
+  {
+    NVFCan1.tx(&rx_buf0);
+  }
 
-  tx_buf.data[0] = 0x00 + counter_buf;
-  tx_buf.data[1] = 0xFF - counter_buf;
-
-  tx_buf.can_dlc = 2;
-  NVFCan0.tx(data, tx_buf.can_dlc);
-  delay(DELAY_MS);   // send data per 100ms
+  if (NVFCan1.taskLoopRecv(&rx_buf1))
+  {
+    NVFCan0.tx(&rx_buf1);
+  }
 }
