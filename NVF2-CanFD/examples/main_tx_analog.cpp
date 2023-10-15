@@ -66,13 +66,14 @@ void loop()
   Serial.print("Analog Reading: ");
   Serial.println(reading);
 
-  int sendResult = NVFCan0.tx(&tx_buf);
-  if (sendResult == CAN_OK){
+  if (NVFCan0.tx(&tx_buf))
+  {
     Serial.println("CAN message sent successfully");
   }
-  else{
+  else
+  {
     Serial.print("Error sending CAN message. Error Code:");
-    Serial.println(sendResult);
+    // Serial.println(sendResult);
   }
 
   delay(DELAY_MS);   // send data per 100ms

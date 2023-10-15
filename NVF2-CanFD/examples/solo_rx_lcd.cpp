@@ -27,9 +27,7 @@ can_frame rx_buf;
 
 void loop()
 {
-  int recvResult = NVFCan0.taskLoopRecv(&rx_buf);
-
-  if (recvResult == CAN_OK)
+  if (NVFCan0.taskLoopRecv(&rx_buf))
   {
       Serial.print("Recieved CAN ID: 0x");
       Serial.print(rx_buf.can_id, HEX);
