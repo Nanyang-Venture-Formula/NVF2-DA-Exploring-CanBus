@@ -34,7 +34,7 @@ This project started to test the capbilities of CanFD for a car. here are some e
 |----------------------------------------------------|:----------:|     TESTED     |
 | [Point to Point CAN](#point-to-point-can-2-nodes)  | Not tested |     TESTED     |
 | [1 CAN Network](#1-proper-can-network)             | Not tested |     TESTED     |
-| [Multiple CAN Networks](#1-controller-2-can-networks) | Not tested |Not tested   |
+| [Multiple CAN Networks](#1-controller-2-can-networks) | Not tested |    Not tested   |
 
 ### 1.3.1. Point to Point CAN (2 Nodes)
 
