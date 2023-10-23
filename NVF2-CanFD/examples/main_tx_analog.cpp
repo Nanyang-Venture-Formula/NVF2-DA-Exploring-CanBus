@@ -17,7 +17,7 @@
 #define DELAY_MS            250
 
 MCP_CAN NVFCanI0(CAN_CSN);
-NVF_Can NVFCan0(&NVFCanI0, 0x0F);
+NVF_Can NVFCan0(&NVFCanI0, 0x0B);
 
 void setup()
 {
