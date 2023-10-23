@@ -30,7 +30,9 @@ can_frame tx_buf;
 void loop()
 {
   int reading = analogRead(ANALOG_PIN);
+  Serial.println(reading);
   tx_buf.data[0] = (uint8_t) reading;
+  Serial.println(tx_buf.data[0]);
 
   tx_buf.can_dlc = 1;
   NVFCan0.tx(&tx_buf);
