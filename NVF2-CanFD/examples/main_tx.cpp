@@ -12,7 +12,8 @@
 #include <Arduino.h>
 #include "CanFD/NVF_Can.h"
 
-#define CAN_CSN             10
+#define SPI                 SPI(PA7, PA6, PA5, PA4)
+#define CAN_CSN             PA4
 #define DELAY_MS            250
 
 MCP_CAN NVFCanI0(CAN_CSN);
