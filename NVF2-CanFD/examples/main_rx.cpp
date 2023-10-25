@@ -10,9 +10,9 @@
  */
 
 #include <Arduino.h>
-#include "CanFD/NVF_Can.h"
 
-#define CAN_CSN             10
+#include "board_dfs.h"
+#include "CanFD/NVF_Can.h"
 
 MCP_CAN NVFCanI0(CAN_CSN);
 NVF_Can NVFCan0(&NVFCanI0, 0x01);
