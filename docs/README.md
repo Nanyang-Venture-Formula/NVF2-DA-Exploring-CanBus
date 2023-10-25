@@ -8,6 +8,10 @@ Some sample testing and debugging codes for CAN Bus Module MCP2515 with the foll
 | WeAct Bluepill [STM32F103] |   ✅    |
 | WeAct Raspberry Pi Pico    |   ❌    |
 
+
+### 1.0.1. Technical Documentaion
+Read the [Technical Documentations...](./technical.md)
+
 ## 1.1. Current Status
 
 This project is still a WIP.
@@ -19,8 +23,8 @@ This project is still a WIP.
 
 Apart from bare bones `tx` and `rx` examples for using NVF_CAN wrappers, we also have examples for:
 
-| Example                                                      |       Status        | UNO |  Bluepill  |
-|--------------------------------------------------------------|:-------------------:|:---:|:----------:|
+| Example                                                       |       Status        | UNO |  Bluepill  |
+|---------------------------------------------------------------|:-------------------:|:---:|:----------:|
 | [CAN RX -> LCD](./NVF2-CanBus/examples/main_rx_lcd.cpp)       | Tested and Working* |  ✅  | Not Tested |
 | [Counter -> CAN TX](./NVF2-CanBus/examples/main_tx.cpp)       | Tested and Working* |  ✅  |     ✅      |
 | [Analog -> CAN TX](./NVF2-CanBus/examples/main_tx_analog.cpp) | Tested and Working* |  ✅  |     ✅      |
