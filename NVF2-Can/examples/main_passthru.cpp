@@ -13,7 +13,7 @@
 #include <SPI.h>
 
 #include "board_dfs.h"
-#include "CanFD/NVF_Can.h"
+#include "CanBus/NVF_Can.h"
 
 #define CAN_CSN1             BoardDef::CAN_CSN
 #define CAN_CSN2             BoardDef::CAN_CSN2

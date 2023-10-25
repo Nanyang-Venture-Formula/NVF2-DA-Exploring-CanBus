@@ -13,7 +13,7 @@
 #include <stdint.h>
 
 #include "board_dfs.h"
-#include "CanFD/NVF_Can.h"
+#include "CanBus/NVF_Can.h"
 
 #define DELAY_MS            250
 

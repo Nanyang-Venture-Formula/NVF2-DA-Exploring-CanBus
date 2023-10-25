@@ -21,15 +21,15 @@ Apart from bare bones `tx` and `rx` examples for using NVF_CAN wrappers, we also
 
 | Example                                                      |       Status        | UNO |  Bluepill  |
 |--------------------------------------------------------------|:-------------------:|:---:|:----------:|
-| [CAN RX -> LCD](./NVF2-CanFD/examples/main_rx_lcd.cpp)       | Tested and Working* |  ✅  | Not Tested |
-| [Counter -> CAN TX](./NVF2-CanFD/examples/main_tx.cpp)       | Tested and Working* |  ✅  |     ✅      |
-| [Analog -> CAN TX](./NVF2-CanFD/examples/main_tx_analog.cpp) | Tested and Working* |  ✅  |     ✅      |
+| [CAN RX -> LCD](./NVF2-CanBus/examples/main_rx_lcd.cpp)       | Tested and Working* |  ✅  | Not Tested |
+| [Counter -> CAN TX](./NVF2-CanBus/examples/main_tx.cpp)       | Tested and Working* |  ✅  |     ✅      |
+| [Analog -> CAN TX](./NVF2-CanBus/examples/main_tx_analog.cpp) | Tested and Working* |  ✅  |     ✅      |
 
 \* only some controllers
 
 ## 1.3. Proposed Examples
 
-This project started to test the capbilities of CanFD for a car. here are some examples of capabilites we will want to test with this project.
+This project started to test the capbilities of CanBus for a car. here are some examples of capabilites we will want to test with this project.
 
 | Capability                                            | Status |
 |-------------------------------------------------------|:------:|
