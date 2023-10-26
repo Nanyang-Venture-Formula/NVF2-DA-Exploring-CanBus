@@ -14,10 +14,12 @@
 
 #define ANALOG_PIN          A0
 #define CAN_CSN             10
-#define DELAY_MS            250
+#define DELAY_MS            1000
 
 MCP_CAN NVFCanI0(CAN_CSN);
-NVF_Can NVFCan0(&NVFCanI0, 0x0F);
+NVF_Can NVFCan0(&NVFCanI0, 0x0B);
+
+can_frame tx_buf;
 
 void setup()
 {

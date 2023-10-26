@@ -11,7 +11,6 @@
 
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
-
 #include "CanFD/NVF_Can.h"
 
 #define CAN_CSN 10
@@ -20,6 +19,7 @@ MCP_CAN NVFCanI0(CAN_CSN);
 NVF_Can NVFCan0(&NVFCanI0, 0x01);
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+can_frame rx_buf;
 
 void setup()
 {
@@ -34,8 +34,6 @@ void setup()
   delay(500);
   lcd.clear();
 }
-
-can_frame rx_buf;
 
 void loop()
 {
