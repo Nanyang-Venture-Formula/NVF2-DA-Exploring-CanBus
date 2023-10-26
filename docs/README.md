@@ -45,16 +45,16 @@ This project started to test the capbilities of CanBus for a car. here are some 
 
 the most basic example of connecting 2 CAN Nodes together.
 
-![img](rsc/img-simple_p2p.jpg)
+![img](rsc/img-simple_p2p.png)
 
 ### 1.3.2. 1 Proper CAN Network
 
 Normal operation of 1 CAN Network where ALL nodes are on the same CAN Bus
 
-![img](rsc/img-1can_network.jpg)
+![img](rsc/img-1can_network.png)
 
 ### 1.3.3. 1 Controller, 2 CAN Networks
 
 Special operation where 1 CAN Node on the Network will act as a pass through to a seperate dedicated CAN Bus network.
 
-![img](rsc/img-2can_networks.jpg)
+![img](rsc/img-2can_networks.png)
