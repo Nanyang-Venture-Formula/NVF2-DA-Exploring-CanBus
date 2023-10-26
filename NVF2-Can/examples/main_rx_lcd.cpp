@@ -11,15 +11,9 @@
 
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
-<<<<<<< HEAD:NVF2-CanFD/examples/main_rx_lcd.cpp
-#include "CanFD/NVF_Can.h"
-
-#define CAN_CSN 10
-=======
 
 #include "board_dfs.h"
 #include "CanBus/NVF_Can.h"
->>>>>>> 7792aa9d91ee6d9d2a100b49dcd00acb9cf7a217:NVF2-Can/examples/main_rx_lcd.cpp
 
 MCP_CAN NVFCanI0(CAN_CSN);
 NVF_Can NVFCan0(&NVFCanI0, 0x01);
