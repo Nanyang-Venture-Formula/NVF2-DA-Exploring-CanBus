@@ -15,13 +15,7 @@
 #include "board_dfs.h"
 #include "CanBus/NVF_Can.h"
 
-<<<<<<< HEAD:NVF2-CanFD/examples/main_tx_analog.cpp
-#define ANALOG_PIN          A0
-#define CAN_CSN             10
-#define DELAY_MS            1000
-=======
 #define DELAY_MS            250
->>>>>>> 7792aa9d91ee6d9d2a100b49dcd00acb9cf7a217:NVF2-Can/examples/main_tx_analog.cpp
 
 MCP_CAN NVFCanI0(CAN_CSN);
 NVF_Can NVFCan0(&NVFCanI0, 0x0B);
