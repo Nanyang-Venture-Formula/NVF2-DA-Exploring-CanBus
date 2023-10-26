@@ -10,10 +10,14 @@
  */
 
 #include <Arduino.h>
-#include "CanFD/NVF_Can.h"
+#include <SPI.h>
 
-#define CAN_CSN1             10
-#define CAN_CSN2             9
+#include "board_dfs.h"
+#include "CanBus/NVF_Can.h"
+
+#define CAN_CSN1             BoardDef::CAN_CSN
+#define CAN_CSN2             BoardDef::CAN_CSN2
+
 #define DELAY_MS            250
 
 // CAN Network 1

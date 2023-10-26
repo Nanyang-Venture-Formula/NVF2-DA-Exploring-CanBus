@@ -1,9 +1,9 @@
 /**
  * @file main_rx.cpp
- * @author Scott CJX (scottcjx.w@gmail.com)
+ * @author Scott CJX
  * @brief 
  * @version 0.1
- * @date 16-10-2023
+ * @date 2023-10-12
  * 
  * @copyright Copyright (c) 2023
  * 
@@ -12,22 +12,22 @@
 #include <Arduino.h>
 
 #include "board_dfs.h"
-#include "CanFD/NVF_Can.h"
+#include "CanBus/NVF_Can.h"
 
-MCP_CAN NVFCanI(BoardDef::CAN_CSN);
-NVF_Can NVFCan(&NVFCanI, CommsDef::CanID::TX);
+MCP_CAN NVFCanI0(CAN_CSN);
+NVF_Can NVFCan0(&NVFCanI0, 0x01);
 
 void setup()
 {
   Serial.begin(115200);
-  NVFCan.setup();
+  NVFCan0.setup();
 }
 
 can_frame rx_buf;
 
 void loop()
 {
-  if (NVFCan.taskLoopRecv(&rx_buf))
+  if (NVFCan0.taskLoopRecv(&rx_buf))
   {
       Serial.print(rx_buf.can_id, HEX);
       Serial.print(": ");

@@ -2,12 +2,15 @@
 
 Some sample testing and debugging codes for CAN Bus Module MCP2515 with the following controllers:
 
-| Controller                          | Status |
-|-------------------------------------|:------:|
-| Arduino UNO                         |   ✅    |
-| M5Stack Basic (Black) [ESP32 Based] |   ❌    |
-| WeAct Bluepill [STM32F103]          |   ❌    |
-| WeAct Raspberry Pi Pico             |   ❌    |
+| Controller                 | Status |
+|----------------------------|:------:|
+| Arduino UNO                |   ✅    |
+| WeAct Bluepill [STM32F103] |   ✅    |
+| WeAct Raspberry Pi Pico    |   ❌    |
+
+
+### 1.0.1. Technical Documentaion
+Read the [Technical Documentations...](./technical.md)
 
 ## 1.1. Current Status
 
@@ -20,21 +23,24 @@ This project is still a WIP.
 
 Apart from bare bones `tx` and `rx` examples for using NVF_CAN wrappers, we also have examples for:
 
-| Example                                                      |   Status   |     UNO    |
-|--------------------------------------------------------------|:----------:|:----------:|
-| [CAN RX -> LCD](./NVF2-CanFD/examples/main_rx_lcd.cpp)       | Not tested |   TESTED   |
-| [Counter -> CAN TX](./NVF2-CanFD/examples/main_tx.cpp)       | Not tested |   TESTED   |
-| [Analog -> CAN TX](./NVF2-CanFD/examples/main_tx_analog.cpp) | Not tested |   TESTED   |
+| Example                                                       |       Status        | UNO |  Bluepill  |
+|---------------------------------------------------------------|:-------------------:|:---:|:----------:|
+| [CAN RX -> LCD](./NVF2-CanBus/examples/main_rx_lcd.cpp)       | Tested and Working* |  ✅  | Not Tested |
+| [Counter -> CAN TX](./NVF2-CanBus/examples/main_tx.cpp)       | Tested and Working* |  ✅  |     ✅      |
+| [Analog -> CAN TX](./NVF2-CanBus/examples/main_tx_analog.cpp) | Tested and Working* |  ✅  |     ✅      |
+
+\* only some controllers
 
 ## 1.3. Proposed Examples
 
-This project started to test the capbilities of CanFD for a car. here are some examples of capabilites we will want to test with this project.
+This project started to test the capbilities of CanBus for a car. here are some examples of capabilites we will want to test with this project.
 
-| Capability                                         |   Status   |
-|----------------------------------------------------|:----------:|
-| [Point to Point CAN](#point-to-point-can-2-nodes)  |   tested   |
-| [1 CAN Network](#1-proper-can-network)             |   tested   |
-| [Multiple CAN Networks](#1-controller-2-can-networks) | Not tested |
+| Capability                                            | Status |
+|-------------------------------------------------------|:------:|
+| [Point to Point CAN](#point-to-point-can-2-nodes)     |   ✅    |
+| [1 CAN Network](#1-proper-can-network)                |   ✅    |
+| [Multiple CAN Networks](#1-controller-2-can-networks) |   ✅    |
+
 ### 1.3.1. Point to Point CAN (2 Nodes)
 
 the most basic example of connecting 2 CAN Nodes together.
