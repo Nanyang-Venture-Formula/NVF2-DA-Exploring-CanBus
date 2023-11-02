@@ -13,5 +13,5 @@ jobs:
         env:
           key: main
           exclude: gh-pages
-          files: NVF2-Can/CanBus/NVF_Can.h NVF2-Can/CanBus/NVF_Can.cpp LICENSE
+          files: NVF2-Can/CanBus/* docs/* LICENSE
           
