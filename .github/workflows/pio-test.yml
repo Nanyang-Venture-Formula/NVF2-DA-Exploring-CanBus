@@ -25,8 +25,8 @@ jobs:
       - name: Install PlatformIO Core
         run: pip install --upgrade platformio
       - name: Run PlatformIO
-        run: pio ci --lib="." --lib="NVF2-Can/*" --lib="NVF2-Can/examples/board_dfs.h"  -D BOARD_UNO --board=uno
+        run: pio ci --lib="." --lib="NVF2-Can/*" --lib="NVF2-Can/examples/board_dfs.h" --board=uno
         # run: pio ci --lib="." --lib="NVF2-Can/*" --lib="NVF2-Can/examples/board_dfs.h" --board=bluepill_f103c8
         env:
           PLATFORMIO_CI_SRC: ${{ matrix.example }}
-          # PLATFORMIO_BUILD_FLAGS: -D BOARD_UNO
+          PLATFORMIO_BUILD_FLAGS: -D BOARD_UNO
