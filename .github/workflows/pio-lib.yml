@@ -13,4 +13,4 @@ jobs:
         env:
           key: main
           branch: platformio-lib
-          files: NVF2-Can/CanBus/NVF_Can.h NVF2-Can/CanBus/NVF_Can.cpp
+          files: ./NVF2-Can/CanBus/NVF_Can.h ./NVF2-Can/CanBus/NVF_Can.cpp
