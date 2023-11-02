@@ -1,4 +1,5 @@
 name: Copy To Branches
+permissions: write-all
 on: [push]
 jobs:
   copy-to-branches:
@@ -13,3 +14,4 @@ jobs:
           key: main
           exclude: gh-pages
           files: NVF2-Can/CanBus/NVF_Can.h NVF2-Can/CanBus/NVF_Can.cpp LICENSE
+          
