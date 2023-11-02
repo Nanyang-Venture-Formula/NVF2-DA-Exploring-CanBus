@@ -11,6 +11,5 @@ jobs:
         uses: planetoftheweb/copy-to-branches@v1.2
         env:
           key: main
-          branch: platformio-lib
           exclude: gh-pages
           files: NVF2-Can/CanBus/NVF_Can.h NVF2-Can/CanBus/NVF_Can.cpp LICENSE
