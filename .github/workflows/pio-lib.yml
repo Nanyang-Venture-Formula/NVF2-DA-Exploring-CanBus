@@ -1,6 +1,5 @@
 name: Copy To Branches
-on:
-  workflow_dispatch:
+on: [push]
 jobs:
   copy-to-branches:
     runs-on: ubuntu-latest
@@ -13,4 +12,5 @@ jobs:
         env:
           key: main
           branch: platformio-lib
-          files: ./NVF2-Can/CanBus/NVF_Can.h ./NVF2-Can/CanBus/NVF_Can.cpp
+          exclude: gh-pages
+          files: NVF2-Can/CanBus/NVF_Can.h NVF2-Can/CanBus/NVF_Can.cpp
