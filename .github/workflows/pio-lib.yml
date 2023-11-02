@@ -13,4 +13,4 @@ jobs:
           key: main
           branch: platformio-lib
           exclude: gh-pages
-          files: NVF2-Can/CanBus/NVF_Can.h NVF2-Can/CanBus/NVF_Can.cpp
+          files: NVF2-Can/CanBus/NVF_Can.h NVF2-Can/CanBus/NVF_Can.cpp LICENSE
